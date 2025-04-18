@@ -65,10 +65,6 @@ Pause → Pauses gameplay
 
 Reset → Resets scores and positions
 
-Difficulty Selector → Adjust AI intelligence
-
-Multiplayer Toggle → Switch between solo and 2-player mode
-
 **🛠 Future Enhancements (Optional Ideas)**
 
 Sound effects and background music 🎵
