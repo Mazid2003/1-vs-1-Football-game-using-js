@@ -107,6 +107,10 @@ cd football_game
 
 Start playing instantly!
 
-**💬 Why I Built This**
+**📜 License**
 
-"I wanted to create a fun and interactive game that showcases my understanding of core JavaScript concepts like collision detection, object movement, event handling, and game loops. This football game also allowed me to dive into AI behavior, custom mechanics like power shots, and toggleable multiplayer support."
+This project is open-source under the MIT License. Feel free to use and modify it! 🚀
+
+**💬 Want to Collaborate?**
+
+Feel free to fork the repo, submit PRs, and give your feedback! 🔥💡
