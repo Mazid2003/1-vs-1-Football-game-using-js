@@ -95,6 +95,18 @@ Leaderboard integration or online multiplayer with Socket.io 🌐
 ├── script.js
 ├── assets/ (optional for sounds or images)
 ```
+📌 Installation & Usage
+
+1️⃣ Clone the Repository
+
+git clone https://github.com/Mazid2003/1-vs-1-Football-game-using-js.git
+
+cd football_game
+
+2️⃣ Open the index.html file in a browser
+
+Start playing instantly!
+
 **💬 Why I Built This**
 
 "I wanted to create a fun and interactive game that showcases my understanding of core JavaScript concepts like collision detection, object movement, event handling, and game loops. This football game also allowed me to dive into AI behavior, custom mechanics like power shots, and toggleable multiplayer support."
