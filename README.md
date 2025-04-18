@@ -2,7 +2,7 @@
 
 **🚀 Project Overview**
 
-The 1v1 Football Game is a fast-paced, browser-based soccer game built using HTML5 Canvas and JavaScript. It features a dynamic player-vs-AI or player-vs-player experience, with interactive gameplay, real-time ball physics, AI difficulty settings, and special power shots.
+The 1v1 Football Game is a fast-paced, browser-based soccer game built using HTML5 Canvas and JavaScript. It features a dynamic player-vs-player experience, with interactive gameplay, real-time ball physics and special power shots.
 
 This project was designed to combine fun game mechanics with solid JavaScript fundamentals, making it both a learning experience and a playable arcade-style game.
 
@@ -88,13 +88,13 @@ Leaderboard integration or online multiplayer with Socket.io 🌐
 ![screenshot_2025-04-18_10-47-09](https://github.com/user-attachments/assets/50cdd7fb-481f-4059-acf9-2082aff93e8d)
 
 📁 Folder Structure (Simplified)
-'''
+```
 📁 1v1-football-game/
 ├── index.html
 ├── style.css
 ├── script.js
 ├── assets/ (optional for sounds or images)
-
+```
 **💬 Why I Built This**
 
 "I wanted to create a fun and interactive game that showcases my understanding of core JavaScript concepts like collision detection, object movement, event handling, and game loops. This football game also allowed me to dive into AI behavior, custom mechanics like power shots, and toggleable multiplayer support."
