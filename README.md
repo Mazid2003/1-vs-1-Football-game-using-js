@@ -40,5 +40,5 @@ Speed reduces over time, mimicking real-world deceleration.
 
 Tech________ | Description<br>
 HTML5_______ | For rendering the game elements and animations.<br>
-JavaScript __| Game logic, user input handling, physics, and AI.<br>
+JavaScript _ | Game logic, user input handling, physics, and AI.<br>
 CSS_________ | Basic styling and UI positioning.
