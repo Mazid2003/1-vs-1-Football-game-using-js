@@ -83,6 +83,10 @@ Leaderboard integration or online multiplayer with Socket.io 🌐
 
 **📷 Demo Screenshot (Optional)**
 
+![screenshot_2025-04-18_10-45-31](https://github.com/user-attachments/assets/2e038add-3e05-4c95-aab8-e147abda28fd)
+
+![screenshot_2025-04-18_10-47-09](https://github.com/user-attachments/assets/50cdd7fb-481f-4059-acf9-2082aff93e8d)
+
 📁 Folder Structure (Simplified)
 '''
 📁 1v1-football-game/
@@ -90,7 +94,7 @@ Leaderboard integration or online multiplayer with Socket.io 🌐
 ├── style.css
 ├── script.js
 ├── assets/ (optional for sounds or images)
-'''
+
 **💬 Why I Built This**
 
 "I wanted to create a fun and interactive game that showcases my understanding of core JavaScript concepts like collision detection, object movement, event handling, and game loops. This football game also allowed me to dive into AI behavior, custom mechanics like power shots, and toggleable multiplayer support."
