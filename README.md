@@ -38,7 +38,7 @@ Bounces off players, walls, and updates position continuously.
 
 Speed reduces over time, mimicking real-world deceleration.
 
-Tech | Description
-HTML5 Canvas | For rendering the game elements and animations.
-Vanilla JavaScript | Game logic, user input handling, physics, and AI.
+Tech    |    Description<br>
+HTML5   | For rendering the game elements and animations.<br>
+JavaScript | Game logic, user input handling, physics, and AI.<br>
 CSS | Basic styling and UI positioning.
