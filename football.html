@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>1v1 Football Game</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #1c1c1c, #2f4f4f);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 40px;
+      text-shadow: 2px 2px 4px #000;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    canvas {
+      background: #5cb85c;
+      display: block;
+      margin: 20px auto;
+      border: 6px solid #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .controls {
+      margin: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .start-btn { background-color: #28a745; color: white; }
+    .pause-btn { background-color: #ffc107; color: black; }
+
+    .score-glow {
+      animation: glow 0.5s ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #fff; }
+      50% { text-shadow: 0 0 15px #ff0; }
+      100% { text-shadow: 0 0 5px #fff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>⚽ 1 vs 1 Football Game</h1>
+
+  <div class="controls">
+    <button class="start-btn" onclick="startGame()">Start</button>
+    <button class="pause-btn" onclick="pauseGame()">Pause</button>
+    <button class="start-btn" onclick="restartGame()">Restart</button>
+  </div>
+
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const playerSize = 40;
+    const ballSize = 20;
+    const speed = 4;
+    const ballSpeed = 5;
+    let score1 = 0, score2 = 0;
+    let gameRunning = false;
+    let animationId;
+    let scoreGlow = false;
+
+    const player1 = { x: 100, y: 180, color: "blue", up: false, down: false, left: false, right: false };
+    const player2 = { x: 660, y: 180, color: "red", up: false, down: false, left: false, right: false };
+    const ball = { x: 390, y: 200, vx: 0, vy: 0 };
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 150, 10, 100);
+      ctx.fillRect(790, 150, 10, 100);
+
+      [player1, player2].forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x + playerSize/2, p.y + playerSize/2, playerSize/2, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(ball.x + ballSize/2, ball.y + ballSize/2, ballSize/2, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.font = "22px Arial";
+      ctx.fillStyle = "white";
+      if (scoreGlow) {
+        ctx.shadowColor = "#FFD700";
+        ctx.shadowBlur = 15;
+      }
+      ctx.fillText(`Blue: ${score1}   Red: ${score2}`, canvas.width/2 - 80, 30);
+      ctx.shadowBlur = 0;
+    }
+
+    function movePlayers() {
+      if (player1.up && player1.y > 0) player1.y -= speed;
+      if (player1.down && player1.y + playerSize < canvas.height) player1.y += speed;
+      if (player1.left && player1.x > 0) player1.x -= speed;
+      if (player1.right && player1.x + playerSize < canvas.width) player1.x += speed;
+
+      if (player2.up && player2.y > 0) player2.y -= speed;
+      if (player2.down && player2.y + playerSize < canvas.height) player2.y += speed;
+      if (player2.left && player2.x > 0) player2.x -= speed;
+      if (player2.right && player2.x + playerSize < canvas.width) player2.x += speed;
+    }
+
+    function moveBall() {
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+
+      // Bounce off top and bottom walls
+      if (ball.y <= 0 || ball.y + ballSize >= canvas.height) {
+        ball.vy *= -1;
+        ball.y = Math.max(0, Math.min(ball.y, canvas.height - ballSize));
+      }
+
+      // Goal for Red (Left side)
+      if (ball.x <= 0 && ball.y + ballSize/2 > 150 && ball.y + ballSize/2 < 250) {
+        score2++;
+        glowScore();
+        resetPositions();
+        return;
+      }
+
+      // Goal for Blue (Right side)
+      if (ball.x + ballSize >= canvas.width && ball.y + ballSize/2 > 150 && ball.y + ballSize/2 < 250) {
+        score1++;
+        glowScore();
+        resetPositions();
+        return;
+      }
+
+      // Bounce off left and right walls (if not goal)
+      if (ball.x <= 0 || ball.x + ballSize >= canvas.width) {
+        ball.vx *= -1;
+        ball.x = Math.max(0, Math.min(ball.x, canvas.width - ballSize));
+      }
+
+      // Slow down the ball slightly
+      ball.vx *= 0.98;
+      ball.vy *= 0.98;
+    }
+
+    function glowScore() {
+      scoreGlow = true;
+      setTimeout(() => scoreGlow = false, 500);
+    }
+
+    function checkCollision(player) {
+      const dx = (player.x + playerSize/2) - (ball.x + ballSize/2);
+      const dy = (player.y + playerSize/2) - (ball.y + ballSize/2);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < playerSize/2 + ballSize/2) {
+        ball.vx = -dx / dist * ballSpeed;
+        ball.vy = -dy / dist * ballSpeed;
+      }
+    }
+
+    function resetPositions() {
+      ball.x = 390; ball.y = 200; ball.vx = 0; ball.vy = 0;
+      player1.x = 100; player1.y = 180;
+      player2.x = 660; player2.y = 180;
+    }
+
+    function gameLoop() {
+      if (!gameRunning) return;
+      movePlayers();
+      moveBall();
+      checkCollision(player1);
+      checkCollision(player2);
+      draw();
+      animationId = requestAnimationFrame(gameLoop);
+    }
+
+    function startGame() {
+      if (!gameRunning) {
+        gameRunning = true;
+        animationId = requestAnimationFrame(gameLoop);
+      }
+    }
+
+    function pauseGame() {
+      if (gameRunning) {
+        gameRunning = false;
+        cancelAnimationFrame(animationId);
+      }
+    }
+
+    function restartGame() {
+      pauseGame();
+      score1 = 0;
+      score2 = 0;
+      resetPositions();
+      draw();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (["KeyW", "KeyS", "KeyA", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+        e.preventDefault(); // Prevent page scroll
+      }
+
+      switch(e.code) {
+        case "KeyW": player1.up = true; break;
+        case "KeyS": player1.down = true; break;
+        case "KeyA": player1.left = true; break;
+        case "KeyD": player1.right = true; break;
+        case "ArrowUp": player2.up = true; break;
+        case "ArrowDown": player2.down = true; break;
+        case "ArrowLeft": player2.left = true; break;
+        case "ArrowRight": player2.right = true; break;
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      switch(e.code) {
+        case "KeyW": player1.up = false; break;
+        case "KeyS": player1.down = false; break;
+        case "KeyA": player1.left = false; break;
+        case "KeyD": player1.right = false; break;
+        case "ArrowUp": player2.up = false; break;
+        case "ArrowDown": player2.down = false; break;
+        case "ArrowLeft": player2.left = false; break;
+        case "ArrowRight": player2.right = false; break;
+      }
+    });
+
+    draw();
+  </script>
+</body>
+</html>
