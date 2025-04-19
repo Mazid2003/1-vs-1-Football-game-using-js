@@ -99,7 +99,7 @@ git clone https://github.com/Mazid2003/1-vs-1-Football-game-using-js.git
 
 cd football_game
 
-2️⃣ Open the index.html file in a browser
+2️⃣ Open the football.html file in a browser
 
 Start playing instantly!
 
