@@ -1,1 +1,36 @@
 
+⚽ 1v1 Football Game – Requirements & Features
+🔧 Technical Requirements
+Languages & Tools Used:
+
+HTML, CSS, JavaScript – Core technologies used for game structure, styling, and interactivity
+
+Canvas API – Used to render the football field, players, ball, and animations
+
+System Requirements:
+
+A basic machine with:
+
+Any modern web browser (Chrome, Firefox, Edge)
+
+No installations required – Just open index.html to play
+
+🎮 Game Features
+1 vs 1 Local Multiplayer
+Two players can play on the same keyboard.
+
+Controls:
+
+Player 1: W, A, S, D
+
+Player 2: Arrow Keys
+
+Goal Detection:
+Tracks goals and resets the ball after scoring.
+
+Timer / Scoreboard:
+Optional scoreboard and timer logic (if implemented or planned).
+
+Power Shot (Optional/Planned):
+Future feature to give players temporary shooting boost.
+
