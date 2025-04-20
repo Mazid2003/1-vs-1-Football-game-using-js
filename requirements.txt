@@ -1,6 +1,6 @@
 
-⚽ 1v1 Football Game – Requirements & Features
 🔧 Technical Requirements
+
 Languages & Tools Used:
 
 HTML, CSS, JavaScript – Core technologies used for game structure, styling, and interactivity
