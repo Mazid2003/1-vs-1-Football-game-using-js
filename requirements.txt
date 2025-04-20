@@ -16,7 +16,9 @@ Any modern web browser (Chrome, Firefox, Edge)
 No installations required – Just open index.html to play
 
 🎮 Game Features
+
 1 vs 1 Local Multiplayer
+
 Two players can play on the same keyboard.
 
 Controls:
