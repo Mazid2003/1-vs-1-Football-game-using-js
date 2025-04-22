@@ -1,4 +1,4 @@
-# ⚽ 1v1 Football Game – Web-Based Soccer Showdown
+# ⚽ 1v1 Football Game – Web-Based Soccer
 
 **🚀 Project Overview**
 
