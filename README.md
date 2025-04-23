@@ -1,4 +1,4 @@
-# ⚽ 1v1 Football Game - using web
+# ⚽ 1v1 Football Game - using javascript 
 
 **🚀 Project Overview**
 
